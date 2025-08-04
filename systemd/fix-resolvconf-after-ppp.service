@@ -1,0 +1,12 @@
+[Unit]
+Description=Force custom resolv.conf after PPP is up
+After=ppp-sim7670g-usb.service
+Requires=ppp-sim7670g-usb.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/force_resolv_conf.sh
+
+[Install]
+WantedBy=multi-user.target
+

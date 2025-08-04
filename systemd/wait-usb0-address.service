@@ -1,0 +1,12 @@
+[Unit]
+Description=Wait for static IP on usb0 before starting Unbound
+After=mosaic-usb0.service
+Requires=mosaic-usb0.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/wait_for_usb0_address.sh
+
+[Install]
+WantedBy=multi-user.target
+

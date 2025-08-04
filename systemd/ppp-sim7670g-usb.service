@@ -1,0 +1,16 @@
+[Unit]
+Description=Start PPP connection via SIM7670G USB HAT
+After=dev-serial-by\x2did-usb\x2dQualComm_QualComm_Compo_000000000001\x2dif06.device network.target wait-modem-device.service
+Requires=dev-serial-by\x2did-usb\x2dQualComm_QualComm_Compo_000000000001\x2dif06.device wait-modem-device.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/usr/bin/pon sim7670g-usb
+ExecStop=/usr/bin/poff sim7670g-usb
+Restart=on-failure
+RestartSec=15
+
+[Install]
+WantedBy=multi-user.target
+

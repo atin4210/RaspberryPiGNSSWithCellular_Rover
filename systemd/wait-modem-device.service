@@ -1,0 +1,12 @@
+[Unit]
+Description=Wait for PPP modem device to appear
+After=mosaic-usb0.service
+Requires=mosaic-usb0.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/wait_for_modem.sh
+
+[Install]
+WantedBy=multi-user.target
+

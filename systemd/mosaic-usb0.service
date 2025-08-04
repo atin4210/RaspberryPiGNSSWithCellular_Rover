@@ -1,0 +1,14 @@
+[Unit]
+Description=Configure static IP for usb0 (RPi side, Mosaic-x5 USB-Ethernet hybrid)
+After=network.target
+Wants=network-online.target
+ConditionPathExists=/sys/class/net/usb0
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/configure_usb0_nmcli.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+

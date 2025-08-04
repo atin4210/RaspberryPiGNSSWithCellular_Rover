@@ -1,0 +1,5 @@
+#!/bin/bash
+
+ip route add default dev $PPP_IFACE metric 50
+
+echo "PPP route added for $PPP_IFACE"

@@ -1,0 +1,11 @@
+[Unit]
+Description=Refresh ARP cache on USB0 after DHCP for Mosaic-x5
+After=mosaic-usb0.service
+Requires=mosaic-usb0.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/refresh_arp.sh
+
+[Install]
+WantedBy=multi-user.target

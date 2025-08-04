@@ -1,0 +1,16 @@
+# Always assign Mosaic as usb0
+SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="1a:32:02:99:15:45", NAME="usb0"
+
+# Always assign SIM7670G as usb1
+SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="22:89:84:6a:96:ab", NAME="usb1"
+
+### More advanced matching in case MAC changes or for furure proofing
+# $ udevadm info -a -p /sys/class/net/usb0 | grep -E 'idVendor|idProduct|serial|address'
+# $ udevadm info -a -p /sys/class/net/usb1 | grep -E 'idVendor|idProduct|serial|address'
+#
+# Mosaic
+#SUBSYSTEM=="net", ACTION=="add", ATTRS{idVendor}=="152a", ATTRS{idProduct}=="85c0", ATTRS{serial}=="3878973", NAME="usb0"
+#
+# SIM7670G
+#SUBSYSTEM=="net", ACTION=="add", ATTRS{idVendor}=="19d1", ATTRS{idProduct}=="0001", ATTRS{serial}=="000000000001", NAME="usb1"
+
