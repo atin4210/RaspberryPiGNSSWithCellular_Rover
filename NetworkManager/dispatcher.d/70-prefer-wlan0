@@ -1,0 +1,16 @@
+#!/bin/bash
+# 
+# Runs everytime WiFi (wlan0) comes up and makes sure that its route is higher
+# priority than that of ppp0 (cellular modem). it ensures that traffic goes
+# through WiFi if available.
+
+IFACE="$1"
+STATE="$2"
+
+if [ "$IFACE" = "wlan0" ] && [ "$STATE" = "up" ]; then
+    WLAN_GW=$(ip route show dev wlan0 | awk '/^default/ {print $3}')
+    if [ -n "$WLAN_GW" ]; then
+        ip route replace default via "$WLAN_GW" dev wlan0 metric 40
+        ip route replace default dev ppp0 metric 200
+    fi
+fi
