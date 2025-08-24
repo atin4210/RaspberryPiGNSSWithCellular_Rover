@@ -15,6 +15,7 @@ This guide walks through setting up a Raspberry Pi to serve GNSS corrections fro
 | `ppp/ip-up.d/` | Default route addition |
 | `config/` | Config files for DNS, NAT, firewall |
 | `udev/` | USB persistent naming rules |
+| `NetworkManager/dispatcher.d/` | script for WiFi route preference, if available |
 | `README.md` | Quick summary and paths |
 | `README_FULL.md` | This guide |
 
@@ -70,6 +71,12 @@ sudo cp config/nftables.conf /etc/nftables.conf
 
 ```bash
 sudo cp udev/99-persistent-usb-net.rules /etc/udev/rules.d/
+```
+
+### 5. NetworkManager Dispatcher Rules
+
+```bash
+sudo cp Networkmanager/dispatcher.d/70-prefer-wlan0 /etc/NetworkManager/dispatcher.d/
 ```
 
 ---
