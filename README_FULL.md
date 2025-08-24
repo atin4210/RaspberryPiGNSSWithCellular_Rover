@@ -34,8 +34,10 @@ sudo apt install ppp dnsmasq unbound nftables network-manager
 
 ```bash
 sudo cp systemd/*.service /etc/systemd/system/
-sudo mkdir -p /etc/systemd/system/ppp-sim7670g-usb.service.d
-sudo cp systemd/override.conf /etc/systemd/system/ppp-sim7670g-usb.service.d/
+sudo mkdir -p /etc/systemd/system/dnsmasq.service.d
+sudo cp systemd/dnsmasq_override.conf /etc/systemd/system/dnsmasq.service.d/
+sudo mkdir -p /etc/systemd/system/unbound.service.d
+sudo cp systemd/unbound_override.conf /etc/systemd/system/unbound.service.d/
 sudo systemctl daemon-reexec
 ```
 
