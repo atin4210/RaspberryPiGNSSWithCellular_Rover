@@ -19,7 +19,7 @@ Many files in this project are copied into system directories like `/etc/` and `
 | Repo Path | System Install Path |
 |-----------|----------------------|
 | `systemd/*.service` | `/etc/systemd/system/` |
-| `systemd/override.conf` | `/etc/systemd/system/ppp-sim7670g-usb.service.d/override.conf` |
+| `systemd/override.conf` | `/etc/systemd/system/dnsmasq.service.d/override.conf` |
 | `scripts/*.sh` | `/usr/local/bin/` |
 | `ppp/peers/sim7670g-usb` | `/etc/ppp/peers/sim7670g-usb` |
 | `ppp/chatscripts/sim7670g-usb` | `/etc/chatscripts/sim7670g-usb` |
