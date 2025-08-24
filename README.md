@@ -30,6 +30,7 @@ Many files in this project are copied into system directories like `/etc/` and `
 | `config/pi.conf` | `/etc/unbound/unbound.conf.d/pi.conf` |
 | `config/nftables.conf` | `/etc/nftables.conf` |
 | `udev/99-persistent-usb-net.rules` | `/etc/udev/rules.d/99-persistent-usb-net.rules` |
+| `NetworkManader/dispatcher.d/70-prefer-wlan0` | `/etc/NetworkManader/dispatcher.d/70-prefer-wlan0` |
 
 ---
 
