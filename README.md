@@ -19,10 +19,11 @@ Many files in this project are copied into system directories like `/etc/` and `
 | Repo Path | System Install Path |
 |-----------|----------------------|
 | `systemd/*.service` | `/etc/systemd/system/` |
-| `systemd/override.conf` | `/etc/systemd/system/dnsmasq.service.d/override.conf` |
 | `scripts/*.sh` | `/usr/local/bin/` |
 | `ppp/peers/sim7670g-usb` | `/etc/ppp/peers/sim7670g-usb` |
 | `ppp/chatscripts/sim7670g-usb` | `/etc/chatscripts/sim7670g-usb` |
+| `systemd/dnsmasq_override.conf` | `/etc/systemd/system/dnsmasq.service.d/override.conf` |
+| `systemd/unbound_override.conf` | `/etc/systemd/system/unbound.service.d/override.conf` |
 | `config/dnsmasq.conf` | `/etc/dnsmasq.conf` |
 | `config/unbound.conf` | `/etc/unbound/unbound.conf` |
 | `config/pi.conf` | `/etc/unbound/unbound.conf.d/pi.conf` |
