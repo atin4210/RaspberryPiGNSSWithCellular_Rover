@@ -1,0 +1,19 @@
+#!/bin/bash
+# Ensure wlan0 is always preferred as default route if available,
+# otherwise fall back to ppp0.
+
+# Find wlan0 gateway (if DHCP/NetworkManager has assigned one)
+WLAN_GW=$(ip route show dev wlan0 | awk '/default/ {print $3}')
+
+if [ -n "$WLAN_GW" ]; then
+    echo "wlan0 gateway detected at $WLAN_GW, preferring wlan0."
+    # Add/replace default route via wlan0 with lower metric (higher priority)
+    ip route replace default via "$WLAN_GW" dev wlan0 metric 40
+    # Still add ppp0 as a backup route, but higher metric (lower priority)
+    ip route replace default dev $PPP_IFACE metric 200
+else
+    echo "No wlan0 gateway found, defaulting to ppp0."
+    # Only add ppp0 default if wlan0 is unavailable
+    ip route replace default dev $PPP_IFACE metric 60
+fi
+  
