@@ -12,6 +12,7 @@ This guide walks through setting up a Raspberry Pi to serve GNSS corrections fro
 | `scripts/` | helper shell scripts for network/device management |
 | `ppp/peers/` | PPP peer configuration |
 | `ppp/chatscripts/` | Modem chat initialization |
+| `ppp/ip-up.d/` | Default route addition |
 | `config/` | Config files for DNS, NAT, firewall |
 | `udev/` | USB persistent naming rules |
 | `README.md` | Quick summary and paths |
@@ -35,9 +36,9 @@ sudo apt install ppp dnsmasq unbound nftables network-manager
 ```bash
 sudo cp systemd/*.service /etc/systemd/system/
 sudo mkdir -p /etc/systemd/system/dnsmasq.service.d
-sudo cp systemd/dnsmasq_override.conf /etc/systemd/system/dnsmasq.service.d/
+sudo cp systemd/dnsmasq_override.conf /etc/systemd/system/dnsmasq.service.d/override.conf
 sudo mkdir -p /etc/systemd/system/unbound.service.d
-sudo cp systemd/unbound_override.conf /etc/systemd/system/unbound.service.d/
+sudo cp systemd/unbound_override.conf /etc/systemd/system/unbound.service.d/override.conf
 sudo systemctl daemon-reexec
 ```
 
@@ -53,6 +54,7 @@ sudo install -m 755 scripts/*.sh /usr/local/bin/
 sudo mkdir -p /etc/ppp/peers /etc/chatscripts
 sudo cp ppp/peers/sim7670g-usb /etc/ppp/peers/
 sudo cp ppp/chatscripts/sim7670g-usb /etc/chatscripts/
+sudo cp ppp/ip-up.d/add-default-route /etc/ip-up.d/
 ```
 
 ### 4. Configuration Files
