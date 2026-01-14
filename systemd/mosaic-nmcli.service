@@ -1,0 +1,14 @@
+[Unit]
+Description=Configure static IP for mosaic0 (RPi side, Mosaic-x5 USB-Ethernet hybrid)
+After=NetworkManager.service 
+Wants=NetworkManager.service
+ConditionPathExists=/sys/class/net/mosaic0
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/configure_mosaic0_sim7670g0_nmcli.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+
