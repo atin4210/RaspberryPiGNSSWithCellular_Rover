@@ -1,0 +1,9 @@
+# Septentrio Mosaic-X5 (USB Ethernet/RNDIS)
+SUBSYSTEM=="net", ACTION=="add", \
+  ATTRS{idVendor}=="152a", ATTRS{idProduct}=="85c0", ATTRS{serial}=="3878973", \
+  NAME="mosaic0"
+
+# Waveshare SIM7670G (USB Ethernet/RNDIS)
+SUBSYSTEM=="net", ACTION=="add", \
+  ATTRS{idVendor}=="19d1", ATTRS{idProduct}=="0001", ATTRS{serial}=="000000000001", \
+  NAME="sim7670g0"
