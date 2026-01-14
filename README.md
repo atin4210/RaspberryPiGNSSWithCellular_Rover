@@ -22,15 +22,15 @@ Many files in this project are copied into system directories like `/etc/` and `
 | `scripts/*.sh` | `/usr/local/bin/` |
 | `ppp/peers/sim7670g-usb` | `/etc/ppp/peers/sim7670g-usb` |
 | `ppp/chatscripts/sim7670g-usb` | `/etc/chatscripts/sim7670g-usb` |
-| `ppp/ip-up.d/add-default-route` | `/etc/ip-up.d/add-default-route` |
+| `ppp/chatscripts/if-up.d/add-default-route` | `/etc/ppp/if-up.d/add-default-route` |
 | `systemd/dnsmasq_override.conf` | `/etc/systemd/system/dnsmasq.service.d/override.conf` |
 | `systemd/unbound_override.conf` | `/etc/systemd/system/unbound.service.d/override.conf` |
 | `config/dnsmasq.conf` | `/etc/dnsmasq.conf` |
 | `config/unbound.conf` | `/etc/unbound/unbound.conf` |
 | `config/pi.conf` | `/etc/unbound/unbound.conf.d/pi.conf` |
 | `config/nftables.conf` | `/etc/nftables.conf` |
+| `config/NetworkManager/99-wifi-metric.conf` | `/etc/NetworkManager/99-wifi-metric.conf` |
 | `udev/99-persistent-usb-net.rules` | `/etc/udev/rules.d/99-persistent-usb-net.rules` |
-| `NetworkManader/dispatcher.d/70-prefer-wlan0` | `/etc/NetworkManader/dispatcher.d/70-prefer-wlan0` |
 
 ---
 

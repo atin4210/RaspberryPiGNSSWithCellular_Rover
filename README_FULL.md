@@ -12,10 +12,10 @@ This guide walks through setting up a Raspberry Pi to serve GNSS corrections fro
 | `scripts/` | helper shell scripts for network/device management |
 | `ppp/peers/` | PPP peer configuration |
 | `ppp/chatscripts/` | Modem chat initialization |
-| `ppp/ip-up.d/` | Default route addition |
+| `ppp/if-up.d/` | Modem rules initialization |
 | `config/` | Config files for DNS, NAT, firewall |
+| `config/NetworkManager/` | Config/rules file for NetworkManager |
 | `udev/` | USB persistent naming rules |
-| `NetworkManager/dispatcher.d/` | script for WiFi route preference, if available |
 | `README.md` | Quick summary and paths |
 | `README_FULL.md` | This guide |
 
@@ -36,10 +36,8 @@ sudo apt install ppp dnsmasq unbound nftables network-manager
 
 ```bash
 sudo cp systemd/*.service /etc/systemd/system/
-sudo mkdir -p /etc/systemd/system/dnsmasq.service.d
-sudo cp systemd/dnsmasq_override.conf /etc/systemd/system/dnsmasq.service.d/override.conf
-sudo mkdir -p /etc/systemd/system/unbound.service.d
-sudo cp systemd/unbound_override.conf /etc/systemd/system/unbound.service.d/override.conf
+sudo mkdir -p /etc/systemd/system/ppp-sim7670g-usb.service.d
+sudo cp systemd/override.conf /etc/systemd/system/ppp-sim7670g-usb.service.d/
 sudo systemctl daemon-reexec
 ```
 
@@ -55,7 +53,7 @@ sudo install -m 755 scripts/*.sh /usr/local/bin/
 sudo mkdir -p /etc/ppp/peers /etc/chatscripts
 sudo cp ppp/peers/sim7670g-usb /etc/ppp/peers/
 sudo cp ppp/chatscripts/sim7670g-usb /etc/chatscripts/
-sudo cp ppp/ip-up.d/add-default-route /etc/ip-up.d/
+sudo cp ppp/chatscripts/if-up.d/add-default-route /etc/ppp/if-up.d/
 ```
 
 ### 4. Configuration Files
@@ -65,18 +63,13 @@ sudo cp config/dnsmasq.conf /etc/dnsmasq.conf
 sudo cp config/unbound.conf /etc/unbound/unbound.conf
 sudo cp config/pi.conf /etc/unbound/unbound.conf.d/pi.conf
 sudo cp config/nftables.conf /etc/nftables.conf
+sudo cp config/NetworkManager/99-wifi-metric.conf /etc/NetworkManager/
 ```
 
 ### 5. Udev Rules
 
 ```bash
-sudo cp udev/99-persistent-usb-net.rules /etc/udev/rules.d/
-```
-
-### 5. NetworkManager Dispatcher Rules
-
-```bash
-sudo cp Networkmanager/dispatcher.d/70-prefer-wlan0 /etc/NetworkManager/dispatcher.d/
+sudo cp udev/80-gnss-net.rules /etc/udev/rules.d/
 ```
 
 ---
