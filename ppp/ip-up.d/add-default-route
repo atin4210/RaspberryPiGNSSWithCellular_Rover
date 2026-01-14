@@ -1,19 +1,13 @@
-#!/bin/bash
-# Ensure wlan0 is always preferred as default route if available,
-# otherwise fall back to ppp0.
+#!/bin/sh
+# Install a single PPP default route as fallback behind Wi-Fi.
+# Wi-Fi default route + metric should be managed by NetworkManager/DHCP.
 
-# Find wlan0 gateway (if DHCP/NetworkManager has assigned one)
-WLAN_GW=$(ip route show dev wlan0 | awk '/default/ {print $3}')
+METRIC=200
 
-if [ -n "$WLAN_GW" ]; then
-    echo "wlan0 gateway detected at $WLAN_GW, preferring wlan0."
-    # Add/replace default route via wlan0 with lower metric (higher priority)
-    ip route replace default via "$WLAN_GW" dev wlan0 metric 40
-    # Still add ppp0 as a backup route, but higher metric (lower priority)
-    ip route replace default dev $PPP_IFACE metric 200
-else
-    echo "No wlan0 gateway found, defaulting to ppp0."
-    # Only add ppp0 default if wlan0 is unavailable
-    ip route replace default dev $PPP_IFACE metric 60
-fi
-  
+# Remove any existing PPP defaults to avoid duplicates
+ip route del default dev "$PPP_IFACE" 2>/dev/null || true
+ip route del default dev "$PPP_IFACE" metric 60 2>/dev/null || true
+ip route del default dev "$PPP_IFACE" metric 200 2>/dev/null || true
+
+# Add/replace the controlled PPP fallback default
+ip route replace default dev "$PPP_IFACE" metric "$METRIC"
